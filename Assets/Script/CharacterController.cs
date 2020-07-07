@@ -21,8 +21,8 @@ public class CharacterController : MonoBehaviour
 
 
 
-	[Header("Events")]
-	[Space]
+	[Header("Events")]					//This are called events, Basically present on inspector(which is a thing we see on our right every time we click on the object)
+	[Space]                             // The point is if we wanna reference some funtion here from another file, Which I have done for OnlandEvent....(Like changing the jump back to false)
 
 	public UnityEvent OnLandEvent;
 
