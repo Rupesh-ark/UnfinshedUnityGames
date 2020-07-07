@@ -19,6 +19,8 @@ public class CharacterController : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
+
+
 	[Header("Events")]
 	[Space]
 
@@ -70,6 +72,7 @@ public class CharacterController : MonoBehaviour
 			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
 			{
 				crouch = true;
+				
 			}
 		}
 
