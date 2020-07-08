@@ -46,14 +46,15 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-
     public void Onlanding()
     {
         animator.SetBool("isJumping", false);
+    }
+    public void OnCrouching(bool isCrouching)
+    {
+        animator.SetBool("isCrouching", isCrouching);
 
     }
-
-
     //This function is called a fixed amount of time, Basically every 0.02 seconds so that the movement is done regardless of frame rate.
     private void FixedUpdate()
     {
