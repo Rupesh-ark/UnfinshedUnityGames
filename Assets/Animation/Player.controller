@@ -67,7 +67,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 9107486039273731985}
-    m_Position: {x: 10, y: 40, z: 0}
+    m_Position: {x: -10, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8921191267420454097}
     m_Position: {x: 200, y: 150, z: 0}
@@ -76,7 +76,7 @@ AnimatorStateMachine:
     m_Position: {x: 180, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 559011650620498104}
-    m_Position: {x: 0, y: 310, z: 0}
+    m_Position: {x: -10, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8020357156526726095}
     m_Position: {x: 390, y: 50, z: 0}
@@ -353,7 +353,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Slide
+  m_Name: Player_crouchWalk
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

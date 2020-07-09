@@ -5,12 +5,14 @@ public class CharacterController : MonoBehaviour
 {
 	[SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .1f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
+	[Range(2, 5)] [SerializeField] private float dashMultiplier = 2f;              //Dash multiplier
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
 	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+	
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
@@ -19,8 +21,7 @@ public class CharacterController : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
-
-
+	
 	[Header("Events")]					//This are called events, Basically present on inspector(which is a thing we see on our right every time we click on the object)
 	[Space]                             // The point is if we wanna reference some funtion here from another file, Which I have done for OnlandEvent....(Like changing the jump back to false)
 
@@ -40,7 +41,7 @@ public class CharacterController : MonoBehaviour
 			OnLandEvent = new UnityEvent();
 
 		if (OnCrouchEvent == null)
-			OnCrouchEvent = new BoolEvent();
+			OnCrouchEvent = new BoolEvent();	
 	}
 
 	private void FixedUpdate()
@@ -63,7 +64,7 @@ public class CharacterController : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool crouch, bool jump)
+	public void Move(float move, bool crouch, bool jump, bool dash)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
@@ -108,7 +109,9 @@ public class CharacterController : MonoBehaviour
 					OnCrouchEvent.Invoke(false);
 				}
 			}
-
+			if(dash && !crouch)					//Dash 
+				move *= dashMultiplier;
+            
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
@@ -135,8 +138,6 @@ public class CharacterController : MonoBehaviour
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
-
-
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
