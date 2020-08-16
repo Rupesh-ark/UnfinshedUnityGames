@@ -1,19 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Insight.Core.Commands
+namespace Insight.Script.Core.Player.Commands
 {
     public abstract class Command : MonoBehaviour
     {
-
         public virtual void Execute()
         {
-
         }
-
-
     }
-
 }
-

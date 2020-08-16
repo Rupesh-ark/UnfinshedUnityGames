@@ -1,28 +1,21 @@
-﻿using Insight.Core.Commands;
-using Insight.Script.Core.MovementInterface;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Insight.Script.Core.Interfaces;
+using Insight.Script.Core.Player.Commands;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Insight.Script.Core.Player.Input
 {
-    public class CharacterInputHandler : MonoBehaviour,IInteractInput,IMoveInput
+    public class CharacterInputHandler : MonoBehaviour, IInteractInput, IMoveInput, IRotationInput
     {
-         
         public Command movementInput;
         public Command interactInput;
 
-       
         private PlayerInput _inputActions;
-
-
 
         public bool IsPressingInteract { get; private set; }
 
         public Vector3 MoveDirection { get; private set; }
-        
+        public Vector3 RotationDirection { get; set; }
 
         private void Awake()
         {
@@ -33,20 +26,16 @@ namespace Insight.Script.Core.Player.Input
         {
             _inputActions.Enable();
 
-         
-            _inputActions.Movement.Movement.performed += OnMoveInput; 
+            _inputActions.PlayerMovement.Movement.performed += OnMoveInput;
 
-            _inputActions.Movement.Interact.performed += OnInteractButton;
-
-
-
+            _inputActions.PlayerMovement.Interact.performed += OnInteractButton;
         }
 
-       private void update()
+        private void Update()
         {
             movementInput.Execute();
         }
-     
+
         public void OnMoveInput(InputAction.CallbackContext context)
         {
             Debug.Log("how many times");
@@ -54,8 +43,6 @@ namespace Insight.Script.Core.Player.Input
             MoveDirection = new Vector3(value.x, 0, 0);
 
             //movementInput.Execute();
-
-
         }
 
         public void OnInteractButton(InputAction.CallbackContext context)
@@ -68,8 +55,7 @@ namespace Insight.Script.Core.Player.Input
         {
             _inputActions.Disable();
 
-            _inputActions.Movement.Interact.performed -= OnInteractButton;
+            _inputActions.PlayerMovement.Interact.performed -= OnInteractButton;
         }
-
     }
 }

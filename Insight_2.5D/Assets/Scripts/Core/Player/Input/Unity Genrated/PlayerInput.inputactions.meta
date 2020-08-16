@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5a57a0c19585fd0499467f269bf901e0
+guid: 21e3beb5c348c654a9a0c0c9f66d92ae
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,4 +11,4 @@ ScriptedImporter:
   generateWrapperCode: 1
   wrapperCodePath: 
   wrapperClassName: 
-  wrapperCodeNamespace: Insight.Script.Core.Player.Input
+  wrapperCodeNamespace: Insight

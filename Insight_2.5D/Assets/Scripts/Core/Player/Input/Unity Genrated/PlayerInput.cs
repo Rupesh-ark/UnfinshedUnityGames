@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Core/Player/Input/PlayerInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/PlayerInput.inputactions'
 
 using System;
 using System.Collections;
@@ -17,38 +17,38 @@ namespace Insight.Script.Core.Player.Input
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""Movement"",
-            ""id"": ""f0f13004-972d-40b9-93fd-e1c065621d7c"",
+            ""name"": ""PlayerMovement"",
+            ""id"": ""c0195f25-cb46-4e92-af3a-520b29836ee2"",
             ""actions"": [
                 {
                     ""name"": ""Movement"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""6a7e0c38-a5b5-4652-a830-443f2fcf6e9c"",
+                    ""id"": ""6753bf24-7d89-4e52-b468-4678e8d8cbce"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
-                    ""id"": ""c0334d2c-0ec2-4e9d-8b0e-4905525dbf05"",
+                    ""id"": ""0e2a9c83-c00d-4c65-95b0-8eaf978c0d90"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""ebf606b9-3e49-4dfc-8d04-55e31ae84bd7"",
+                    ""id"": ""78b63d8e-32c6-4126-8e61-484ba1ca663b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": ""WASD"",
-                    ""id"": ""895c83ee-8dd7-4496-b399-64416e2b796e"",
+                    ""id"": ""37a6a9ac-381a-4b5c-baa6-2d5789ba56d8"",
                     ""path"": ""2DVector"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
@@ -59,66 +59,66 @@ namespace Insight.Script.Core.Player.Input
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""2529d6ac-f360-4441-bc4b-b164191fe4a0"",
+                    ""id"": ""1022aa97-41ab-4218-83fc-0f5e7d26f4cb"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""5a8b2f34-cd26-4f03-8585-78c75a9d7cc3"",
+                    ""id"": ""d210431d-4b9a-491f-8c9d-a1a35c111830"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""ce30996d-aff1-4ac8-ac83-837f08d521e7"",
+                    ""id"": ""32ac6727-0ada-406d-a7ab-54df71f4d811"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""4ddfaa30-607d-4be3-abb1-f516a6d33390"",
+                    ""id"": ""ea8ce537-5818-46ce-ae40-874f035f7aa0"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d3a0bf2f-db2b-4c4b-9b52-a61f1fab143d"",
+                    ""id"": ""8d090bcb-0f4d-4ffa-9fca-541219ab4804"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": """",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""312e34f8-fe26-47c7-a100-bd53e00e05ed"",
+                    ""id"": ""4133746a-b84b-4244-a54c-a714857c9c95"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": """",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -126,25 +126,13 @@ namespace Insight.Script.Core.Player.Input
             ]
         }
     ],
-    ""controlSchemes"": [
-        {
-            ""name"": ""Keyboard"",
-            ""bindingGroup"": ""Keyboard"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        }
-    ]
+    ""controlSchemes"": []
 }");
-            // Movement
-            m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-            m_Movement_Movement = m_Movement.FindAction("Movement", throwIfNotFound: true);
-            m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
-            m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
+            // PlayerMovement
+            m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
+            m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
+            m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
+            m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -191,39 +179,39 @@ namespace Insight.Script.Core.Player.Input
             asset.Disable();
         }
 
-        // Movement
-        private readonly InputActionMap m_Movement;
-        private IMovementActions m_MovementActionsCallbackInterface;
-        private readonly InputAction m_Movement_Movement;
-        private readonly InputAction m_Movement_Jump;
-        private readonly InputAction m_Movement_Interact;
-        public struct MovementActions
+        // PlayerMovement
+        private readonly InputActionMap m_PlayerMovement;
+        private IPlayerMovementActions m_PlayerMovementActionsCallbackInterface;
+        private readonly InputAction m_PlayerMovement_Movement;
+        private readonly InputAction m_PlayerMovement_Jump;
+        private readonly InputAction m_PlayerMovement_Interact;
+        public struct PlayerMovementActions
         {
             private @PlayerInput m_Wrapper;
-            public MovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Movement => m_Wrapper.m_Movement_Movement;
-            public InputAction @Jump => m_Wrapper.m_Movement_Jump;
-            public InputAction @Interact => m_Wrapper.m_Movement_Interact;
-            public InputActionMap Get() { return m_Wrapper.m_Movement; }
+            public PlayerMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
+            public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
+            public InputAction @Interact => m_Wrapper.m_PlayerMovement_Interact;
+            public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(MovementActions set) { return set.Get(); }
-            public void SetCallbacks(IMovementActions instance)
+            public static implicit operator InputActionMap(PlayerMovementActions set) { return set.Get(); }
+            public void SetCallbacks(IPlayerMovementActions instance)
             {
-                if (m_Wrapper.m_MovementActionsCallbackInterface != null)
+                if (m_Wrapper.m_PlayerMovementActionsCallbackInterface != null)
                 {
-                    @Movement.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnMovement;
-                    @Movement.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnMovement;
-                    @Movement.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnMovement;
-                    @Jump.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnJump;
-                    @Jump.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnJump;
-                    @Jump.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnJump;
-                    @Interact.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
-                    @Interact.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
-                    @Interact.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
+                    @Movement.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
+                    @Jump.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
+                    @Jump.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
+                    @Jump.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
+                    @Interact.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
+                    @Interact.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
+                    @Interact.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
                 }
-                m_Wrapper.m_MovementActionsCallbackInterface = instance;
+                m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
                 if (instance != null)
                 {
                     @Movement.started += instance.OnMovement;
@@ -238,17 +226,8 @@ namespace Insight.Script.Core.Player.Input
                 }
             }
         }
-        public MovementActions @Movement => new MovementActions(this);
-        private int m_KeyboardSchemeIndex = -1;
-        public InputControlScheme KeyboardScheme
-        {
-            get
-            {
-                if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
-                return asset.controlSchemes[m_KeyboardSchemeIndex];
-            }
-        }
-        public interface IMovementActions
+        public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+        public interface IPlayerMovementActions
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);

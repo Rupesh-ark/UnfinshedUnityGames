@@ -1,4 +1,4 @@
-﻿namespace Insight.Script.Core.MovementInterface
+﻿namespace Insight.Script.Core.Interfaces
 {
     public interface IInteractInput
     {
