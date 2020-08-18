@@ -6,7 +6,7 @@ namespace Insight.Script.Core.PlayerScripts
     {
         protected Player player;
         protected PlayerStateMachine stateMachine;
-        protected PlayerData playerDate;
+        protected PlayerData playerData;
 
         protected float startTime;
 
@@ -16,7 +16,7 @@ namespace Insight.Script.Core.PlayerScripts
         {
             this.player = player;
             this.stateMachine = stateMachine;
-            this.playerDate = playerData;
+            this.playerData = playerData;
             this.animBoolName = animBoolName;
         }
 
@@ -29,7 +29,7 @@ namespace Insight.Script.Core.PlayerScripts
 
         public virtual void Exit()
         {
-            player.Anim.SetBool(animBoolName, true);
+            player.Anim.SetBool(animBoolName, false);
         }
 
         public virtual void LogicUpdate()

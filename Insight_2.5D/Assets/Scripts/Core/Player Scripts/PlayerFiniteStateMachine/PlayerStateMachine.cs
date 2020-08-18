@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Insight.Script.Core.PlayerScripts
 {
-    public class PlayerStateMachine : MonoBehaviour
+    public class PlayerStateMachine
     {
         public PlayerState CurrentState { get; private set; }
 
@@ -15,7 +15,7 @@ namespace Insight.Script.Core.PlayerScripts
             CurrentState.Enter();
         }
 
-        private void ChangeState(PlayerState newState)
+        public void ChangeState(PlayerState newState)
         {
             CurrentState.Exit();
             CurrentState = newState;

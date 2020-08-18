@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+namespace Insight.Script.Core.PlayerScripts
 {
-    // Start is called before the first frame update
-    private void Start()
-    {
-    }
+    [CreateAssetMenu(fileName ="newPlayerData", menuName ="Data/Player Data/Base Data")]
 
-    // Update is called once per frame
-    private void Update()
+    public class PlayerData : ScriptableObject
     {
+
+        [Header("Running State")]
+        public float movementVelocity = 10f;
+
     }
 }

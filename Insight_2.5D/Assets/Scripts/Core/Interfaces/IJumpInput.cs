@@ -2,8 +2,8 @@
 
 namespace Insight.Script.Core.Interfaces
 {
-    public interface IMoveInput
+    public interface IJumpInput
     {
-        Vector3 MoveDirection { get; }
+        Vector3 JumpDirection { get; set; }
     }
 }
