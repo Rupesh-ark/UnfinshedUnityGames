@@ -4,17 +4,10 @@ using UnityEngine;
 
 namespace Insight.Script.Core.PlayerScripts
 {
-    public class PlayerGroundedState : PlayerState
+    public class PlayerLandState : PlayerGroundedState
     {
-        protected int xinput;
-        private bool jumpInput;
-
-        public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+        public PlayerLandState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
         {
-
-
-
-
         }
 
         public override void DoChecks()
@@ -25,6 +18,7 @@ namespace Insight.Script.Core.PlayerScripts
         public override void Enter()
         {
             base.Enter();
+            Debug.Log("land state");
         }
 
         public override void Exit()
@@ -36,16 +30,14 @@ namespace Insight.Script.Core.PlayerScripts
         {
             base.LogicUpdate();
 
-            xinput = player.InputHandler.NomInputX;
-
-            jumpInput = player.InputHandler.IsPressingJump;
-
-            if(jumpInput)
+            if(xinput != 0)
             {
-                player.InputHandler.UseJumpInput();
-                stateMachine.ChangeState(player.JumpState);
+                stateMachine.ChangeState(player.MoveState);
             }
-
+            else
+            {
+                stateMachine.ChangeState(player.IdleState);
+            }
         }
 
         public override void PhysicsUpdate()

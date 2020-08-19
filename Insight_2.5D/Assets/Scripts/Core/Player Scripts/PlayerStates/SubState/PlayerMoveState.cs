@@ -32,7 +32,7 @@ namespace Insight.Script.Core.PlayerScripts
 
             player.CheckIfShouldFlip(xinput);
 
-            player.SetVelocityx(playerData.movementVelocity * xinput);
+            player.SetVelocityX(playerData.movementVelocity * xinput);
             
             
             if(xinput == 0)

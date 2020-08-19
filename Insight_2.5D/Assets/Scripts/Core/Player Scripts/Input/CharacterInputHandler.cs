@@ -11,6 +11,8 @@ namespace Insight.Script.Core.PlayerScripts
         private PlayerInput _inputActions;
 
         public bool IsPressingInteract { get; private set; }
+
+        public bool IsPressingJump { get; private set; }
         
         public Vector2 RawMovementInput { get; private set; }
         
@@ -32,6 +34,8 @@ namespace Insight.Script.Core.PlayerScripts
             _inputActions.PlayerMovement.Movement.performed += OnMoveInput;
 
             _inputActions.PlayerMovement.Interact.performed += OnInteractButton;
+
+            _inputActions.PlayerMovement.Jump.performed += OnJumpInput;
         }
 
        
@@ -53,15 +57,23 @@ namespace Insight.Script.Core.PlayerScripts
        
         public void OnJumpInput(InputAction.CallbackContext context)
         {
+            var value = context.ReadValue<float>();
+            IsPressingJump = value >= 0.15f;
+
+            Debug.Log("Jump");
            
 
         }
+
+        public void UseJumpInput() => IsPressingJump = false;
 
         private void OnDisable()
         {
             _inputActions.Disable();
 
             _inputActions.PlayerMovement.Interact.performed -= OnInteractButton;
+
+            _inputActions.PlayerMovement.Jump.performed -= OnJumpInput;
         }
 
      

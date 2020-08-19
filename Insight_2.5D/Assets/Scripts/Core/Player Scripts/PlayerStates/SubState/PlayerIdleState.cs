@@ -18,7 +18,7 @@ namespace Insight.Script.Core.PlayerScripts
         public override void Enter()
         {
             base.Enter();
-            player.SetVelocityx(0f);
+            player.SetVelocityX(0f);
         }
 
         public override void Exit()
