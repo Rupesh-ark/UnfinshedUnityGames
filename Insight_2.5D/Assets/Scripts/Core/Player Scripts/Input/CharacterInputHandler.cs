@@ -34,7 +34,7 @@ namespace Insight.Script.Core.PlayerScripts
             _inputActions.PlayerMovement.Movement.performed += OnMoveInput;
 
             _inputActions.PlayerMovement.Interact.performed += OnInteractButton;
-
+            
             _inputActions.PlayerMovement.Jump.performed += OnJumpInput;
         }
 
@@ -59,9 +59,6 @@ namespace Insight.Script.Core.PlayerScripts
         {
             var value = context.ReadValue<float>();
             IsPressingJump = value >= 0.15f;
-
-            Debug.Log("Jump");
-           
 
         }
 

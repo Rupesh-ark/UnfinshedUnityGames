@@ -25,7 +25,6 @@ namespace Insight.Script.Core.PlayerScripts
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Ability State");
             isAbilityDone = false;
         }
 

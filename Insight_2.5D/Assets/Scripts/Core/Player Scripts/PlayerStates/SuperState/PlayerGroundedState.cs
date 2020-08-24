@@ -8,6 +8,7 @@ namespace Insight.Script.Core.PlayerScripts
     {
         protected int xinput;
         private bool jumpInput;
+        private bool isGrounded;
 
         public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
         {
@@ -20,11 +21,14 @@ namespace Insight.Script.Core.PlayerScripts
         public override void DoChecks()
         {
             base.DoChecks();
+
+            isGrounded = player.CheckIfGrounded();
         }
 
         public override void Enter()
         {
             base.Enter();
+        
         }
 
         public override void Exit()
@@ -40,7 +44,7 @@ namespace Insight.Script.Core.PlayerScripts
 
             jumpInput = player.InputHandler.IsPressingJump;
 
-            if(jumpInput)
+            if(jumpInput && isGrounded)
             {
                 player.InputHandler.UseJumpInput();
                 stateMachine.ChangeState(player.JumpState);

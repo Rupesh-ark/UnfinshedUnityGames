@@ -5,6 +5,8 @@ namespace Insight.Script.Core.PlayerScripts
 {
     public class PlayerJumpState : PlayerAbilityState
     {
+      
+
         public PlayerJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
         {
         }
@@ -15,5 +17,9 @@ namespace Insight.Script.Core.PlayerScripts
             player.AddJumpForce(playerData.jumpVelocity);
             isAbilityDone = true;
         }
+
+      
+
+
     }
 }

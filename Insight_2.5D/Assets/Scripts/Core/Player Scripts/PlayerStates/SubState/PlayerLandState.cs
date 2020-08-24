@@ -18,7 +18,7 @@ namespace Insight.Script.Core.PlayerScripts
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("land state");
+        
         }
 
         public override void Exit()

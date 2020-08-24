@@ -29,7 +29,7 @@ namespace Insight.Script.Core.PlayerScripts
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("In Air State");
+ 
         }
 
         public override void Exit()

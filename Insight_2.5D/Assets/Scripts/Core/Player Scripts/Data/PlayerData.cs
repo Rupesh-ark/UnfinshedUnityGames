@@ -14,8 +14,8 @@ namespace Insight.Script.Core.PlayerScripts
         public int numberOfSphere = 5;
         [Range(0.1f, 0.5f)]
         public float distanceBetweenSphere = 0.1f;
-        [Range(0.1f, 0.8f)]
-        public float rayCastDistance = 0.2f;
+        [Range(0.01f, 0.8f)]
+        public float rayCastDistance = 0.1f;
         public LayerMask whatIsGround;
 
         [Header("Running State")]
