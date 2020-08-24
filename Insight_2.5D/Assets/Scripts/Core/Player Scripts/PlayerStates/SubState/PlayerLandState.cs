@@ -34,10 +34,11 @@ namespace Insight.Script.Core.PlayerScripts
             {
                 stateMachine.ChangeState(player.MoveState);
             }
-            else
+            else if(isAnimationFinished)
             {
                 stateMachine.ChangeState(player.IdleState);
             }
+           
         }
 
         public override void PhysicsUpdate()

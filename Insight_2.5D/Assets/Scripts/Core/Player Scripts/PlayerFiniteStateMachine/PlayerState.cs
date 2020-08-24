@@ -10,6 +10,8 @@ namespace Insight.Script.Core.PlayerScripts
 
         protected float startTime;
 
+        protected bool isAnimationFinished;
+
         private string animBoolName;
 
         public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
@@ -25,6 +27,7 @@ namespace Insight.Script.Core.PlayerScripts
             DoChecks();
             player.Anim.SetBool(animBoolName, true);
             startTime = Time.time;
+            isAnimationFinished = false;
         }
 
         public virtual void Exit()
@@ -32,17 +35,19 @@ namespace Insight.Script.Core.PlayerScripts
             player.Anim.SetBool(animBoolName, false);
         }
 
-        public virtual void LogicUpdate()
-        {
-        }
+        public virtual void LogicUpdate() { }
 
         public virtual void PhysicsUpdate()
         {
             DoChecks();
         }
 
-        public virtual void DoChecks()
-        {
-        }
+        public virtual void DoChecks() { }
+
+
+        public virtual void AnimationTrigger() { }
+
+        public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
+
     }
 }

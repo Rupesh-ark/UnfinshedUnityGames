@@ -11,7 +11,9 @@ namespace Insight.Script.Core.PlayerScripts
 
         private bool isGrounded;
 
-        
+        private bool jumpInput;
+
+        private bool coyoteTime;
 
         public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
         {
@@ -41,13 +43,19 @@ namespace Insight.Script.Core.PlayerScripts
         {
             base.LogicUpdate();
 
-            
+            CheckCoyoteTime();
 
             xInput = player.InputHandler.NomInputX;
+
+            jumpInput = player.InputHandler.IsPressingJump;
 
             if(isGrounded && player.CurrentVelocity.y < 0.1f)
             {
                 stateMachine.ChangeState(player.LandState);
+            }
+            else if(jumpInput && player.JumpState.CanJump())
+            {
+                stateMachine.ChangeState(player.JumpState);
             }
             else
             {
@@ -64,5 +72,16 @@ namespace Insight.Script.Core.PlayerScripts
         {
             base.PhysicsUpdate();
         }
+
+        private void CheckCoyoteTime()
+        {
+            if(coyoteTime && Time.time > startTime + playerData.coyoteTime)
+            {
+                coyoteTime = false;
+                player.JumpState.DecreaseAmountOfJumpsLeft();
+            }
+        }
+
+        public void StartCoyoteTime() => coyoteTime = true;
     }
 }

@@ -141,6 +141,14 @@ namespace Insight.Script.Core.PlayerScripts
         #endregion
 
         #region Additional Functions
+
+        private void AnimationTriggerFunction() => StateMachine.CurrentState.AnimationTrigger();
+
+        public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+
+        
+
+
         private void Flip()
         {
             FacingDirection *= -1;
@@ -172,6 +180,8 @@ namespace Insight.Script.Core.PlayerScripts
                 _bottomSpheres.Add(newObj);
             }
         }
+
+
         #endregion
 
     }

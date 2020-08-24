@@ -19,13 +19,18 @@ namespace Insight.Script.Core.PlayerScripts
         public int NomInputX { get; private set; }
 
         public int NomInputY { get; private set; }
-        
-        public Vector3 RotationDirection { get; set; }
+
+        [SerializeField]
+        private float inputHoldTime = 0.2f;
+
+        private float jumpInputStartTime; 
 
         private void Awake()
         {
             _inputActions = new PlayerInput();
         }
+
+        
 
         private void OnEnable()
         {
@@ -38,7 +43,20 @@ namespace Insight.Script.Core.PlayerScripts
             _inputActions.PlayerMovement.Jump.performed += OnJumpInput;
         }
 
-       
+        private void Update()
+        {
+            CheckJumpInputHoldTime();
+
+        }
+
+        private void CheckJumpInputHoldTime()
+        {
+            if(Time.time >= jumpInputStartTime + inputHoldTime)
+            {
+                IsPressingJump = false;
+            }
+        }
+
         public void OnMoveInput(InputAction.CallbackContext context)
         {
             RawMovementInput = context.ReadValue<Vector2>();
@@ -58,8 +76,12 @@ namespace Insight.Script.Core.PlayerScripts
         public void OnJumpInput(InputAction.CallbackContext context)
         {
             var value = context.ReadValue<float>();
-            IsPressingJump = value >= 0.15f;
+            if(value >= 0.15f)
+            {
+                IsPressingJump = true;
+                jumpInputStartTime = Time.time;
 
+            }
         }
 
         public void UseJumpInput() => IsPressingJump = false;

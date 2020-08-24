@@ -8,9 +8,8 @@ namespace Insight.Script.Core.PlayerScripts
     {
         protected bool isAbilityDone;
 
-        private bool isGrounded;                               //For now other abilities do not know if grounded.
-                                                                       //Make it protected if other classes need to know.
-
+        private bool isGrounded;
+    
         public PlayerAbilityState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
         {
 

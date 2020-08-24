@@ -21,3 +21,5 @@ MonoBehaviour:
     m_Bits: 256
   movementVelocity: 10
   jumpVelocity: 10
+  amountOfJumps: 1
+  coyoteTime: 0.2

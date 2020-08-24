@@ -28,6 +28,7 @@ namespace Insight.Script.Core.PlayerScripts
         public override void Enter()
         {
             base.Enter();
+            player.JumpState.ResetAmountOfJumpsLeft();
         
         }
 
@@ -44,10 +45,15 @@ namespace Insight.Script.Core.PlayerScripts
 
             jumpInput = player.InputHandler.IsPressingJump;
 
-            if(jumpInput && isGrounded)
+            if(jumpInput && player.JumpState.CanJump())
             {
                 player.InputHandler.UseJumpInput();
                 stateMachine.ChangeState(player.JumpState);
+            }
+            else if(!isGrounded)
+            {
+                player.InAirState.StartCoyoteTime();
+                stateMachine.ChangeState(player.InAirState);
             }
 
         }

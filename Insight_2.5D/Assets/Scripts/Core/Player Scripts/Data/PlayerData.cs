@@ -23,6 +23,10 @@ namespace Insight.Script.Core.PlayerScripts
 
         [Header("Jump State")]
         public float jumpVelocity = 8f;
+        public int amountOfJumps = 1;
+
+        [Header("In Air State")]
+        public float coyoteTime = 0.2f;
 
     }
 }
