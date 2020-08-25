@@ -11,6 +11,7 @@ namespace Insight.Script.Core.PlayerScripts
         protected float startTime;
 
         protected bool isAnimationFinished;
+        protected bool isExitingState;
 
         private string animBoolName;
 
@@ -28,11 +29,13 @@ namespace Insight.Script.Core.PlayerScripts
             player.Anim.SetBool(animBoolName, true);
             startTime = Time.time;
             isAnimationFinished = false;
+            isExitingState = false;
         }
 
         public virtual void Exit()
         {
             player.Anim.SetBool(animBoolName, false);
+            isExitingState = true;
         }
 
         public virtual void LogicUpdate() { }

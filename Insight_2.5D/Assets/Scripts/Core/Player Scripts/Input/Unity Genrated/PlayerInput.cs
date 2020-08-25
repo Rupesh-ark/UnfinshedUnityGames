@@ -1,4 +1,3 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Core/Player/Input/Unity Genrated/PlayerInput.inputactions'
 
 using System;
 using System.Collections;
@@ -6,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Insight
+namespace Insight.Script.Core.PlayerScripts
 {
     public class @PlayerInput : IInputActionCollection, IDisposable
     {

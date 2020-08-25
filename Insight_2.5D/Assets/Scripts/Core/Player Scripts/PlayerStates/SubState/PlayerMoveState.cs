@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Insight.Script.Core.PlayerScripts
+﻿namespace Insight.Script.Core.PlayerScripts
 {
     public class PlayerMoveState : PlayerGroundedState
     {
         public PlayerMoveState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
         {
-
         }
 
         public override void DoChecks()
@@ -33,9 +28,8 @@ namespace Insight.Script.Core.PlayerScripts
             player.CheckIfShouldFlip(xinput);
 
             player.SetVelocityX(playerData.movementVelocity * xinput);
-            
-            
-            if(xinput == 0)
+
+            if (xinput == 0 && !isExitingState)
             {
                 stateMachine.ChangeState(player.IdleState);
             }

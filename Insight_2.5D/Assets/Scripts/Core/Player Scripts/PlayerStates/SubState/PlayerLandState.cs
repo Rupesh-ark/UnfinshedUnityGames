@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Insight.Script.Core.PlayerScripts
+﻿namespace Insight.Script.Core.PlayerScripts
 {
     public class PlayerLandState : PlayerGroundedState
     {
@@ -18,7 +14,6 @@ namespace Insight.Script.Core.PlayerScripts
         public override void Enter()
         {
             base.Enter();
-        
         }
 
         public override void Exit()
@@ -29,16 +24,17 @@ namespace Insight.Script.Core.PlayerScripts
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
-            if(xinput != 0)
+            if (!isExitingState)
             {
-                stateMachine.ChangeState(player.MoveState);
+                if (xinput != 0)
+                {
+                    stateMachine.ChangeState(player.MoveState);
+                }
+                else if (isAnimationFinished)
+                {
+                    stateMachine.ChangeState(player.IdleState);
+                }
             }
-            else if(isAnimationFinished)
-            {
-                stateMachine.ChangeState(player.IdleState);
-            }
-           
         }
 
         public override void PhysicsUpdate()

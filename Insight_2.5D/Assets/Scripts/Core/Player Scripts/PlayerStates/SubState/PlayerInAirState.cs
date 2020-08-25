@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Insight.Script.Core.PlayerScripts
 {
     public class PlayerInAirState : PlayerState
     {
-
         private int xInput;
 
         private bool isGrounded;
@@ -15,9 +12,12 @@ namespace Insight.Script.Core.PlayerScripts
 
         private bool coyoteTime;
 
+        private bool isJumping;
+
+        private bool jumpInputStop;
+
         public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
         {
-
         }
 
         public override void DoChecks()
@@ -25,13 +25,11 @@ namespace Insight.Script.Core.PlayerScripts
             base.DoChecks();
 
             isGrounded = player.CheckIfGrounded();
-
         }
 
         public override void Enter()
         {
             base.Enter();
- 
         }
 
         public override void Exit()
@@ -45,16 +43,61 @@ namespace Insight.Script.Core.PlayerScripts
 
             CheckCoyoteTime();
 
+            CopyInputParameters();
+
+            CheckJumpMultiplier();
+
+            HandlingMovementInAirState();
+        }
+
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+        }
+
+        private void CheckCoyoteTime()
+        {
+            if (coyoteTime && Time.time > startTime + playerData.coyoteTime)
+            {
+                coyoteTime = false;
+                player.JumpState.DecreaseAmountOfJumpsLeft();
+            }
+        }
+
+        private void CopyInputParameters()
+        {
             xInput = player.InputHandler.NomInputX;
 
             jumpInput = player.InputHandler.IsPressingJump;
 
-            if(isGrounded && player.CurrentVelocity.y < 0.1f)
+            jumpInputStop = player.InputHandler.JumpInputStop;
+        }
+
+        private void CheckJumpMultiplier()
+        {
+            if (isJumping)
+            {
+                if (jumpInputStop)
+                {
+                    player.SetVelocityY(playerData.jumpVelocity * playerData.variableJumpHeightMultiplier);
+                    isJumping = false;
+                }
+                else if (player.CurrentVelocity.y <= 0f)
+                {
+                    isJumping = false;
+                }
+            }
+        }
+
+        private void HandlingMovementInAirState()
+        {
+            if (isGrounded && player.CurrentVelocity.y < 0.1f)
             {
                 stateMachine.ChangeState(player.LandState);
             }
-            else if(jumpInput && player.JumpState.CanJump())
+            else if (jumpInput && player.JumpState.CanJump())
             {
+                player.InputHandler.UseJumpInput();
                 stateMachine.ChangeState(player.JumpState);
             }
             else
@@ -65,23 +108,10 @@ namespace Insight.Script.Core.PlayerScripts
                 player.Anim.SetFloat("velocityY", player.CurrentVelocity.y);
                 player.Anim.SetFloat("velocityX", Mathf.Abs(player.CurrentVelocity.x));
             }
-
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
-        private void CheckCoyoteTime()
-        {
-            if(coyoteTime && Time.time > startTime + playerData.coyoteTime)
-            {
-                coyoteTime = false;
-                player.JumpState.DecreaseAmountOfJumpsLeft();
-            }
         }
 
         public void StartCoyoteTime() => coyoteTime = true;
+
+        public void SetIsJumping() => isJumping = true;
     }
 }

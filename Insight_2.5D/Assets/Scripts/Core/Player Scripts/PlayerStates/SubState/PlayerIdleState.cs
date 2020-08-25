@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Insight.Script.Core.PlayerScripts
+﻿namespace Insight.Script.Core.PlayerScripts
 {
     public class PlayerIdleState : PlayerGroundedState
     {
@@ -19,7 +15,6 @@ namespace Insight.Script.Core.PlayerScripts
         {
             base.Enter();
             player.SetVelocityX(0f);
-         
         }
 
         public override void Exit()
@@ -30,7 +25,7 @@ namespace Insight.Script.Core.PlayerScripts
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(xinput != 0)
+            if (xinput != 0 && !isExitingState)
             {
                 stateMachine.ChangeState(player.MoveState);
             }

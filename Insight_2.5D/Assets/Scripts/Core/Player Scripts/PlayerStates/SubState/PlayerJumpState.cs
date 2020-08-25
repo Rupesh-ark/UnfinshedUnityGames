@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-namespace Insight.Script.Core.PlayerScripts
+﻿namespace Insight.Script.Core.PlayerScripts
 {
     public class PlayerJumpState : PlayerAbilityState
     {
         private int amountOfJumpsLeft;
-        
+
         public PlayerJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
         {
             amountOfJumpsLeft = playerData.amountOfJumps;
@@ -15,9 +12,10 @@ namespace Insight.Script.Core.PlayerScripts
         public override void Enter()
         {
             base.Enter();
-            player.AddJumpForce(playerData.jumpVelocity);
+            player.SetVelocityY(playerData.jumpVelocity);
             isAbilityDone = true;
             amountOfJumpsLeft--;
+            player.InAirState.SetIsJumping();
         }
 
         public bool CanJump()
@@ -31,7 +29,5 @@ namespace Insight.Script.Core.PlayerScripts
         public void ResetAmountOfJumpsLeft() => amountOfJumpsLeft = playerData.amountOfJumps;
 
         public void DecreaseAmountOfJumpsLeft() => amountOfJumpsLeft--;
-
-
     }
 }

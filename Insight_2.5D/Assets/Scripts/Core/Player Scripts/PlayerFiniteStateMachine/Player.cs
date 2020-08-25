@@ -1,5 +1,4 @@
-﻿using Insight.Script.Core.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Insight.Script.Core.PlayerScripts
@@ -7,6 +6,7 @@ namespace Insight.Script.Core.PlayerScripts
     public class Player : MonoBehaviour
     {
         #region State Variables
+
         public PlayerStateMachine StateMachine { get; private set; }
         public PlayerIdleState IdleState { get; private set; }
         public PlayerMoveState MoveState { get; private set; }
@@ -16,9 +16,11 @@ namespace Insight.Script.Core.PlayerScripts
 
         [SerializeField]
         private PlayerData playerData;
-        #endregion
+
+        #endregion State Variables
 
         #region Components
+
         public Animator Anim { get; private set; }
 
         public CharacterInputHandler InputHandler { get; private set; }
@@ -29,18 +31,22 @@ namespace Insight.Script.Core.PlayerScripts
 
         [SerializeField]
         private GameObject groundDetection;
-        #endregion
+
+        #endregion Components
 
         #region Additional Variables
+
         public Vector3 Workspace { get; private set; }
         public Vector3 CurrentVelocity { get; private set; }
 
         public int FacingDirection { get; private set; }
 
         private List<GameObject> _bottomSpheres = new List<GameObject>();
-        #endregion
+
+        #endregion Additional Variables
 
         #region Unity Callback Function
+
         private void Awake()
         {
             capsule = GetComponent<CapsuleCollider>();
@@ -58,7 +64,6 @@ namespace Insight.Script.Core.PlayerScripts
             LandState = new PlayerLandState(this, StateMachine, playerData, "land");
 
             SummonGroundDetectionSphere();
-
         }
 
         private void Start()
@@ -68,8 +73,6 @@ namespace Insight.Script.Core.PlayerScripts
             InputHandler = GetComponent<CharacterInputHandler>();
 
             RB = GetComponent<Rigidbody>();
-
-            
 
             StateMachine.Initialize(IdleState);
 
@@ -86,34 +89,36 @@ namespace Insight.Script.Core.PlayerScripts
         {
             StateMachine.CurrentState.PhysicsUpdate();
         }
-        #endregion
+
+        #endregion Unity Callback Function
 
         #region Set Function
 
         public void SetVelocityX(float velocity)
         {
-            
             Workspace = new Vector3(velocity, CurrentVelocity.y, CurrentVelocity.z);
 
             RB.velocity = Workspace;
-            
+
             CurrentVelocity = Workspace;
         }
 
-        public void AddJumpForce(float jumpVelocity)
+        public void SetVelocityY(float jumpVelocity)
         {
             Workspace = new Vector3(CurrentVelocity.x, jumpVelocity, CurrentVelocity.z);
+
             RB.velocity = Workspace;
+
             CurrentVelocity = Workspace;
         }
 
-        #endregion
-
+        #endregion Set Function
 
         #region Check Function
+
         public void CheckIfShouldFlip(int xinput)
         {
-            if(xinput != 0 && xinput != FacingDirection)
+            if (xinput != 0 && xinput != FacingDirection)
             {
                 Flip();
             }
@@ -121,33 +126,28 @@ namespace Insight.Script.Core.PlayerScripts
 
         public bool CheckIfGrounded()
         {
-
-            foreach(GameObject rayCastOrigin in _bottomSpheres)
+            foreach (GameObject rayCastOrigin in _bottomSpheres)
             {
-                Debug.DrawRay(rayCastOrigin.transform.position, Vector3.down * playerData.rayCastDistance,Color.black);
-                
+                Debug.DrawRay(rayCastOrigin.transform.position, Vector3.down * playerData.rayCastDistance, Color.black);
+
                 RaycastHit hit;
 
                 if (Physics.Raycast(rayCastOrigin.transform.position, Vector3.down, out hit, playerData.rayCastDistance, playerData.whatIsGround))
                 {
                     return true;
                 }
-                
             }
 
             return false;
         }
 
-        #endregion
+        #endregion Check Function
 
         #region Additional Functions
 
         private void AnimationTriggerFunction() => StateMachine.CurrentState.AnimationTrigger();
 
         public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
-
-        
-
 
         private void Flip()
         {
@@ -181,9 +181,6 @@ namespace Insight.Script.Core.PlayerScripts
             }
         }
 
-
-        #endregion
-
+        #endregion Additional Functions
     }
-
 }

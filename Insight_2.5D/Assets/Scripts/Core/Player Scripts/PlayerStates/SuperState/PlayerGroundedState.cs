@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Insight.Script.Core.PlayerScripts
+﻿namespace Insight.Script.Core.PlayerScripts
 {
     public class PlayerGroundedState : PlayerState
     {
@@ -12,10 +8,6 @@ namespace Insight.Script.Core.PlayerScripts
 
         public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
         {
-
-
-
-
         }
 
         public override void DoChecks()
@@ -29,7 +21,6 @@ namespace Insight.Script.Core.PlayerScripts
         {
             base.Enter();
             player.JumpState.ResetAmountOfJumpsLeft();
-        
         }
 
         public override void Exit()
@@ -45,17 +36,16 @@ namespace Insight.Script.Core.PlayerScripts
 
             jumpInput = player.InputHandler.IsPressingJump;
 
-            if(jumpInput && player.JumpState.CanJump())
+            if (jumpInput && player.JumpState.CanJump())
             {
                 player.InputHandler.UseJumpInput();
                 stateMachine.ChangeState(player.JumpState);
             }
-            else if(!isGrounded)
+            else if (!isGrounded)
             {
                 player.InAirState.StartCoyoteTime();
                 stateMachine.ChangeState(player.InAirState);
             }
-
         }
 
         public override void PhysicsUpdate()
