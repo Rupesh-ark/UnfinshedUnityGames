@@ -5,22 +5,22 @@ namespace ABoardGame.Scripts.Core.PlayerScripts.Commands
 {
     public class HorizontalMoveCommand : Command
     {
-        float moveUnits = 1f;
-        private Rigidbody rb;
+        float moveUnits = 5f;
+       
         private bool shouldMove;
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
+            
         }
-        public override void Execute()
+        public override void Execute(float value)
         {
-            MoveOnBoard();
+            MoveOnBoard(value);
         }
 
-        private void MoveOnBoard()
+        private void MoveOnBoard(float direction)
         {
-            rb.transform.position = new Vector3(rb.transform.position.x + moveUnits, rb.transform.position.y, rb.transform.position.z);
+            transform.position = new Vector3(transform.position.x , transform.position.y, transform.position.z + (moveUnits * direction));
 
 
         }

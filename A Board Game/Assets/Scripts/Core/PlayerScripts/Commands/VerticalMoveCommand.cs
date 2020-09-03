@@ -7,22 +7,20 @@ namespace ABoardGame.Scripts.Core.PlayerScripts.Commands
 {
     public class VerticalMoveCommand : Command
     {
-        private Rigidbody rb;
-        private bool shouldMove;
-        float moveUnits = 1f;
+        float moveUnits = 5f;
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
+            
         }
-        public override void Execute()
+        public override void Execute(float value)
         {
-            MoveOnBoard();
+            MoveOnBoard(value);
         }
 
-        private void MoveOnBoard()
+        private void MoveOnBoard(float direction)
         {
-            rb.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y, rb.transform.position.z + moveUnits);
+            transform.position = new Vector3(transform.position.x - (moveUnits * direction), transform.position.y, transform.position.z );
 
         }
 

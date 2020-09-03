@@ -1,28 +1,19 @@
-﻿using ABoardGame.Scripts.Core.Interfaces;
-using ABoardGame.Scripts.Core.PlayerScripts.Commands;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace ABoardGame.Scripts.Core.PlayerScripts.Input
 {
     public class CharacterInputHandler : MonoBehaviour
     {
-
-        public Command horizontal;
-        public Command vertical;
-
-        
-        
         private PlayerInputActions playerInputAction;
 
-        private float horizontalMovement;
-        private float verticalMovement;
 
+        public float horizontalMovement { get; private set; }
+        
+        public float verticalMovement { get; private set; }
 
         public bool IsPressingHorizontalMovement { get; private set; }
         public bool IsPressingVerticalMovement { get; private set; }
-
-
 
         private void Awake()
         {
@@ -40,30 +31,29 @@ namespace ABoardGame.Scripts.Core.PlayerScripts.Input
 
         private void OnHorizontalMoveInput(InputAction.CallbackContext context)
         {
-            verticalMovement = context.ReadValue<float>();
-            IsPressingHorizontalMovement = verticalMovement >= 0.15f;
-            if (horizontal != null && IsPressingHorizontalMovement)
-                horizontal.Execute();
-                    
+            horizontalMovement = context.ReadValue<float>();
+            IsPressingHorizontalMovement = horizontalMovement != 0;
         }
 
         private void OnVerticalMoveInput(InputAction.CallbackContext context)
         {
-            horizontalMovement = context.ReadValue<float>();
-            IsPressingVerticalMovement = horizontalMovement >= 0.15f;
-            if (vertical != null && IsPressingVerticalMovement)
-                vertical.Execute();
+            verticalMovement = context.ReadValue<float>();
+            IsPressingVerticalMovement = verticalMovement != 0;
         }
+
+
+        public void UseHorrizontalInput() => IsPressingHorizontalMovement = false;
+        public void UseVerticalInput() => IsPressingVerticalMovement = false;
+
+
 
         private void OnDisable()
         {
             playerInputAction.Disable();
 
-            playerInputAction.Player.HorizontalMovement.performed += OnHorizontalMoveInput;
+            playerInputAction.Player.HorizontalMovement.performed -= OnHorizontalMoveInput;
 
             playerInputAction.Player.VerticalMovement.performed -= OnVerticalMoveInput;
         }
-
-        
     }
 }
