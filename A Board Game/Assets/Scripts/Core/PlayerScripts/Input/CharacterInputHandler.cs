@@ -7,9 +7,8 @@ namespace ABoardGame.Scripts.Core.PlayerScripts.Input
     {
         private PlayerInputActions playerInputAction;
 
-
         public float horizontalMovement { get; private set; }
-        
+
         public float verticalMovement { get; private set; }
 
         public bool IsPressingHorizontalMovement { get; private set; }
@@ -41,11 +40,9 @@ namespace ABoardGame.Scripts.Core.PlayerScripts.Input
             IsPressingVerticalMovement = verticalMovement != 0;
         }
 
-
         public void UseHorrizontalInput() => IsPressingHorizontalMovement = false;
+
         public void UseVerticalInput() => IsPressingVerticalMovement = false;
-
-
 
         private void OnDisable()
         {

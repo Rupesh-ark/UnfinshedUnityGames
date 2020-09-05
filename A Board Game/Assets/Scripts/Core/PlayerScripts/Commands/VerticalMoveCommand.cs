@@ -1,31 +1,52 @@
-﻿using ABoardGame.Scripts.Core.Interfaces;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ABoardGame.Scripts.Core.PlayerScripts.Commands
 {
-    public class VerticalMoveCommand : Command
+    public class VerticalMoveCommand : MoveCommand
     {
-        float moveUnits = 5f;
-
-        private void Awake()
+        
+        public override void Awake()
         {
-            
+            base.Awake();
         }
-        public override void Execute(float value)
+
+        public void Execute(float value)
         {
+            Debug.Log("VerticalExecute");
             MoveOnBoard(value);
         }
 
-        private void MoveOnBoard(float direction)
+        public override void MoveOnBoard(float direction)
         {
-            transform.position = new Vector3(transform.position.x - (moveUnits * direction), transform.position.y, transform.position.z );
+            EvaluateVerticalDirection(direction);
+
+            transform.position = new Vector3(transform.position.x - (moveUnits * moveDirection), transform.position.y, transform.position.z);
 
         }
 
+        public void EvaluateVerticalDirection(float direction)
+        {
+            moveDirection = direction;
+            if (playerCheck.boundaryTriggerRight && !playerCheck.boundaryTriggerLeft)
+            {
+                if (direction < 0)
+                {
+                    moveDirection = 0;
+                    CanMove = false;
+                }
 
-
+            }
+            else if (playerCheck.boundaryTriggerLeft && !playerCheck.boundaryTriggerRight)
+            {
+                if (direction > 0)
+                {
+                    moveDirection = 0;
+                    CanMove = false;
+                }
+            }
+            else
+                CanMove = true;
+        }
 
     }
 }

@@ -1,28 +1,50 @@
-﻿using ABoardGame.Scripts.Core.Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ABoardGame.Scripts.Core.PlayerScripts.Commands
 {
-    public class HorizontalMoveCommand : Command
+    public class HorizontalMoveCommand : MoveCommand
     {
-        float moveUnits = 5f;
-       
-        private bool shouldMove;
-
-        private void Awake()
+        public override void Awake()
         {
-            
+            base.Awake();
         }
-        public override void Execute(float value)
+
+        public void Execute(float value)
         {
+            Debug.Log("Hori Execute");
             MoveOnBoard(value);
         }
 
-        private void MoveOnBoard(float direction)
+        public override void MoveOnBoard(float direction)
         {
-            transform.position = new Vector3(transform.position.x , transform.position.y, transform.position.z + (moveUnits * direction));
+            EvaluateHorizontalDirection(direction);
 
-
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (moveUnits * moveDirection));
         }
+
+        public void EvaluateHorizontalDirection(float direction)
+        {
+            moveDirection = direction;
+            if (playerCheck.boundaryTriggerFront && !playerCheck.boundaryTriggerBack)
+            {
+                if (direction < 0)
+                {
+                    moveDirection = 0;
+                    CanMove = false;
+                }
+            }
+            else if (playerCheck.boundaryTriggerBack && !playerCheck.boundaryTriggerFront)
+            {
+                if (direction > 0)
+                {
+                    moveDirection = 0;
+                    CanMove = false;
+                }
+            }
+            else
+                CanMove = true;
+        }
+
+       
     }
 }
