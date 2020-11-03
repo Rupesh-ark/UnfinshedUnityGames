@@ -3,6 +3,9 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> AboardGame
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -10,6 +13,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+<<<<<<< HEAD
 =======
 /Insight_2.5D/[Ll]ibrary/
 /Insight_2.5D/[Tt]emp/
@@ -19,6 +23,8 @@
 /Insight_2.5D/[Ll]ogs/
 /Insight_2.5D/[Mm]emoryCaptures/
 >>>>>>> Insight_2.5D
+=======
+>>>>>>> AboardGame
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
